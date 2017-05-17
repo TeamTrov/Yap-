@@ -31,6 +31,7 @@ class MainDisplay extends React.Component {
   render() {
     return (
       <Card style={styles.cardStyle}>
+        <h1>MainDisplay Component</h1>
         <CardMedia
           overlay={<CardTitle
             title={this.props.data.name}

@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const Locale = require('../database-mongo');
 const request = require ('request');
 const axios = require('axios');
-const yelpToken = 'KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx';
+const morgan = require('morgan');
+const yelpToken = "KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx"
+
 let location = {};
 
 const app = express();
@@ -13,6 +15,7 @@ const app = express();
 app.use(express.static(`${__dirname}/../react-client/dist`));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
   res.send('hello');
@@ -174,7 +177,7 @@ app.get('/search', (req, res) => {
   }
 );
 
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log('listening on port 3000!');
+const localPort = 3000;
+app.listen(process.env.PORT || localPort, () => {
+  console.log(`listening on port ${localPort}!`);
 });

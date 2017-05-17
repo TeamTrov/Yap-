@@ -23,7 +23,8 @@ export const testAPI = () => {
 export const FacebookAuth = () => {
   window.fbAsyncInit = () => {
     FB.init({
-      appId: '452843528382132',
+      // appId: '452843528382132',  //this is the old one provided by orig team
+      appId: '1909507675963563', //from Brandon
       cookie: true,
       xfbml: true,
       version: 'v2.1',

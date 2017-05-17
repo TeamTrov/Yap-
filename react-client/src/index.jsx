@@ -20,7 +20,7 @@ class Main extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = () => {
       FB.init({
-        appId: '000000000000000', //your fb api key here
+        appId: '1909507675963563', //your fb api key here
         cookie: true,
         xfbml: true,
         version: 'v2.1',
