@@ -7,6 +7,7 @@ const yelpIcon = require('../assets/yelpLogo/Yelp_icon.png');
 
 const FavInfo = props => (
   <div>
+    <h1>Favinfo Component</h1>
     <h3>{props.data.name}</h3>
     <a href={`${props.data.url}`}><img
       src={yelpIcon}
