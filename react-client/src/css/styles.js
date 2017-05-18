@@ -116,6 +116,13 @@ const styles = {
     fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
     backgroundRepeat: 'no-repeat',
   },
+  searchInput: {
+    margin: '5px 0 5px 0',
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
+    float: 'left',
+    backgroundColor: 'white',
+  },
   tagline: {
     paddingTop: '150px',
     fontWeight: 'normal',
