@@ -6,7 +6,7 @@ const Locale = require('../database-mongo');
 const request = require ('request');
 const axios = require('axios');
 const morgan = require('morgan');
-const yelpToken ='';
+const yelpToken =require('./yelp_config.js');
 
 let location = {};
 
