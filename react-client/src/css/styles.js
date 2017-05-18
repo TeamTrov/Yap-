@@ -65,6 +65,14 @@ const styles = {
   FacebookLogin: {
     width: '250px',
   },
+  Footer: {
+    width: '1300px',
+    height: '100px',
+    backgroundColor: '#ffa726',
+    marginTop: '-10px',
+    marginLeft: '-10px',
+    float: 'left',
+  },
   Header: {
     width: '1300px',
     height: '100px',
@@ -107,10 +115,6 @@ const styles = {
     marginLeft: '-8px',
     fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
     backgroundRepeat: 'no-repeat',
-  },
-  blue: {
-    color: 'blue',
-    backgroundColor: 'blue',
   },
   tagline: {
     paddingTop: '150px',
