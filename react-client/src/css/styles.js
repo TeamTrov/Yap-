@@ -62,6 +62,17 @@ const styles = {
     float: 'left',
     clear: 'left',
   },
+  FacebookLogin: {
+    width: '250px',
+  },
+  Header: {
+    width: '1300px',
+    height: '100px',
+    backgroundColor: '#ffa726',
+    marginTop: '-10px',
+    marginLeft: '-10px',
+    clear: 'left',
+  },
   helpCommands: {
     borderStyle: 'solid',
     borderColor: '#FFA726',
@@ -86,6 +97,19 @@ const styles = {
     height: '40px',
     left: '-20px',
     top: '-20px',
+  },
+  splash: {
+    backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg')",
+    backgroundSize: '100%',
+    height: '605px',
+    textAlign: 'center',
+    marginTop: '-21px',
+    marginLeft: '-8px',
+    fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
+  },
+  blue: {
+    color: 'blue',
+    backgroundColor: 'blue',
   },
 };
 

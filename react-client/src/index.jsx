@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import Header from './components/Header';
 import FacebookLogin from './components/FacebookLogin';
 
 class Main extends React.Component {
@@ -106,10 +107,13 @@ class Main extends React.Component {
     return (
       <div>
         {!isLogin ? (
-          <FacebookLogin
-            loginFB={this.loginFB}
-            checkLoginState={this.checkLoginState}
-          />) : (
+          <div>
+            <Header />
+            <FacebookLogin
+              loginFB={this.loginFB}
+              checkLoginState={this.checkLoginState}
+            />
+          </div> ) : (
             <App
               checkLoginState={this.checkLoginState}
               loginFB={this.loginFB}
