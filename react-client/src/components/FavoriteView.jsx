@@ -23,6 +23,7 @@ class FavoriteView extends React.Component {
   render() {
     return (
       <div style={styles.root}>
+        <h1>Favorite View Component</h1>
         <GridList
           cellHeight={130}
           style={styles.gridList}
