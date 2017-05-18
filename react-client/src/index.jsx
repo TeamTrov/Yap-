@@ -4,7 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import Header from './components/Header';
 import FacebookLogin from './components/FacebookLogin';
+import Footer from './components/Footer';
 
 class Main extends React.Component {
   constructor(props) {
@@ -106,10 +108,14 @@ class Main extends React.Component {
     return (
       <div>
         {!isLogin ? (
-          <FacebookLogin
-            loginFB={this.loginFB}
-            checkLoginState={this.checkLoginState}
-          />) : (
+          <div>
+            <Header />
+            <FacebookLogin
+              loginFB={this.loginFB}
+              checkLoginState={this.checkLoginState}
+            />
+          <Footer />
+          </div> ) : (
             <App
               checkLoginState={this.checkLoginState}
               loginFB={this.loginFB}

@@ -62,6 +62,25 @@ const styles = {
     float: 'left',
     clear: 'left',
   },
+  FacebookLogin: {
+    width: '250px',
+  },
+  Footer: {
+    width: '1300px',
+    height: '100px',
+    backgroundColor: '#ffa726',
+    marginTop: '-10px',
+    marginLeft: '-10px',
+    float: 'left',
+  },
+  Header: {
+    width: '1300px',
+    height: '100px',
+    backgroundColor: '#ffa726',
+    marginTop: '-10px',
+    marginLeft: '-10px',
+    float: 'left',
+  },
   helpCommands: {
     borderStyle: 'solid',
     borderColor: '#FFA726',
@@ -86,6 +105,27 @@ const styles = {
     height: '40px',
     left: '-20px',
     top: '-20px',
+  },
+  splash: {
+    backgroundImage: "url(backgroundpalazzo.jpg)",
+    height: '605px',
+    width: '1300px',
+    textAlign: 'center',
+    marginTop: '-21px',
+    marginLeft: '-8px',
+    fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
+    backgroundRepeat: 'no-repeat',
+  },
+  searchInput: {
+    margin: '5px 0 5px 0',
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
+    float: 'left',
+    backgroundColor: 'white',
+  },
+  tagline: {
+    paddingTop: '150px',
+    fontWeight: 'normal',
   },
 };
 
