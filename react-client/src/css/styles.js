@@ -99,21 +99,22 @@ const styles = {
     top: '-20px',
   },
   splash: {
-    backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg')",
-    backgroundSize: '100%',
+    backgroundImage: "url(backgroundpalazzo.jpg)",
     height: '605px',
+    width: '1300px',
     textAlign: 'center',
     marginTop: '-21px',
     marginLeft: '-8px',
     fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
+    backgroundRepeat: 'no-repeat',
   },
   blue: {
     color: 'blue',
     backgroundColor: 'blue',
   },
-  yapLogo: {
-    color: 'blue',
-    backgroundColor: 'blue',
+  tagline: {
+    paddingTop: '150px',
+    fontWeight: 'normal',
   },
 };
 
