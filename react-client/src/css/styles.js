@@ -71,7 +71,7 @@ const styles = {
     backgroundColor: '#ffa726',
     marginTop: '-10px',
     marginLeft: '-10px',
-    clear: 'left',
+    float: 'left',
   },
   helpCommands: {
     borderStyle: 'solid',
@@ -108,6 +108,10 @@ const styles = {
     fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
   },
   blue: {
+    color: 'blue',
+    backgroundColor: 'blue',
+  },
+  yapLogo: {
     color: 'blue',
     backgroundColor: 'blue',
   },

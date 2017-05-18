@@ -9,8 +9,8 @@ export default class Header extends React.Component {
 
   render () {
     return (
-    <section id="header">
-    <h1 style={styles.Header}></h1>
+    <section id="header" style={styles.Header}>
+    <img src="yapLogo.png"></img>
     </section>
     )
   }

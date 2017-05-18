@@ -6,7 +6,6 @@ const facebookIcon = require('../assets/facebookIcon/facebookSignin.png');
 
 const FacebookLogin = props => (
   <div style={styles.splash}>
-    <h1>Yap+</h1>
     <h3>Yap. Plus more. Login now</h3>
     <img
       style={styles.FacebookLogin}
