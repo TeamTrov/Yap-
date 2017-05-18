@@ -1,10 +1,9 @@
 // reusable component for Facebook login
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import App from './App';
 import FacebookLogin from './components/FacebookLogin';
+var FacebookAPIKey = require('../facebook_config.js')
 
 class Main extends React.Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class Main extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = () => {
       FB.init({
-        appId: '1909507675963563', //your fb api key here
+        appId: FacebookAPIKey.appId, //your fb api key here
         cookie: true,
         xfbml: true,
         version: 'v2.1',

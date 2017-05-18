@@ -1,6 +1,10 @@
 ## Mac OSX ##
 .DS_Store
 
+## API Keys ##
+server/yelp_config.js
+react-client/facebook_config.js
+
 ## NPM ##
 node_modules
 
