@@ -87,6 +87,26 @@ const styles = {
     left: '-20px',
     top: '-20px',
   },
+  translateBox: {
+    position: 'absolute',
+    display: 'inline',
+    marginLeft: '20px',
+    marginRight: '20px',
+    marginBottom: '20px',
+    textAlign: 'center',
+    border: 'solid',
+  },
+  translateBoxFrom: {
+    float: 'left',
+    textAlign: 'center',
+    borderRight: 'solid',
+    paddingRight: '60px',
+  },
+  translateBoxTo: {
+    float: 'right',
+    textAlign: 'center',
+    paddingLeft: '60px',
+  }
 };
 
 export default styles;
