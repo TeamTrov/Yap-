@@ -8,7 +8,7 @@ node_modules
 compiled
 
 ## React ##
-react-client/dist/bundle
+## react-client/dist/bundle ##
 
 
 ## NPM-Debugger ##
