@@ -21,7 +21,7 @@ class TranslateView extends React.Component {
   render() {
     return(
       <div style={styles.translateBox}>
-        <h1> TranslateView Component </h1>
+        <h1> Translate </h1>
         <div style={styles.translateBoxFrom}>
           <h3> {this.state.translateFromLang} </h3>
           <h3> {this.state.translateOldPhrase} </h3>
