@@ -142,12 +142,14 @@ const styles = {
     float: 'left',
     textAlign: 'center',
     borderRight: 'solid',
-    paddingRight: '60px',
+    paddingRight: '80px',
+    paddingLeft: '30px',
   },
   translateBoxTo: {
     float: 'right',
     textAlign: 'center',
     paddingLeft: '60px',
+    paddingRight: '30px',
   },
 };
 

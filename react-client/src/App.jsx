@@ -12,9 +12,7 @@ import LoadingScreen from './components/LoadingScreen';
 import FavoriteView from './components/FavoriteView';
 import HelpSection from './components/HelpSection';
 import Gmap from './components/Gmap';
-
 import TranslateView from './components/TranslateView';
-
 import styles from './css/styles';
 
 injectTapEventPlugin();
@@ -46,7 +44,7 @@ class App extends React.Component {
       snackBarRemove: false,
       lat: undefined,
       lng: undefined,
-      // added for translation
+      // translation info
       translateView: false,
       translateFromLang: undefined,
       translateToLang: undefined,
@@ -64,10 +62,7 @@ class App extends React.Component {
     this.handleSnackRemove = this.handleSnackRemove.bind(this);
     this.speechRemoveHandler = this.speechRemoveHandler.bind(this);
     this.speechRemove = this.speechRemove.bind(this);
-
-    // added
     this.clickTranslate = this.clickTranslate.bind(this);
-
   }
 
   componentWillMount() {
@@ -97,6 +92,8 @@ class App extends React.Component {
         'go to front': this.clickMain,
         'help me': this.clickHelp,
         'translate': this.clickTranslate,
+        'language translate from': this.updateTranslateFrom,
+        'laguage translate to': this.updateTranslateTo,
         'travel to': this.clickTravel,
         'save to favorites': () => {
           this.saveToFavorite(this.state.data);
@@ -156,17 +153,38 @@ class App extends React.Component {
   }
 
   clickTravel() {
-    console.log('CLICKED TRAVEL');
+    console.log('traveling to...');
+    // location
+    this.setState({
+      lat: response.lat,
+      lng: response.long,
+    }, () => axios.post('/location', response));
   }
 
-  // added handler for TRANSLATE
-  clickTranslate() {
+  updateTranslateFrom() {
+    console.log('updating translate from');
+    // this.setState({
+    //   translateFromLang: 'en'
+    // });
+  }
 
+  updateTranslateTo() {
+    console.log('updating translate to');
+    // this.setState({
+    //   translateToLang: 'es'
+    // });
+  }
+
+  // added handler for Google Translate
+  clickTranslate() {
+    // this.setState({
+    //   isLoading: true,
+    // });
     // setTimeout(() => {
     //   this.setState({
     //     isLoading: false,
     //   });
-    // }, 200);
+    // }, 1500);
 
     // temportary testing with hardcoded data
     // add search/speech functionality
@@ -285,7 +303,7 @@ class App extends React.Component {
       this.setState({
         isLoading: false,
       });
-    }, 700);
+    }, 1500);
     console.log('search: ', input);
     axios.get(`/search?query=${input}`)
     .then((response) => {
@@ -331,10 +349,8 @@ class App extends React.Component {
     const isFavView = this.state.favView;
     const isData = this.state.data;
     const isMapView = this.state.mapView;
-
-    // added for translate
+    // translate
     const isTranslateView = this.state.translateView;
-    //
 
     let condRender;
     let condMap;
@@ -364,8 +380,7 @@ class App extends React.Component {
           />
         </div>
       );
-
-      // check for translate view
+    // check if translate view state is set to true
     } else if (isTranslateView && !isMainView) {
       condRender = (
         <div>
