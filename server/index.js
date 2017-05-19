@@ -9,7 +9,6 @@ const morgan = require('morgan');
 const yelpToken = "KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx";
 
 let location = {};
-
 const app = express();
 
 app.use(express.static(`${__dirname}/../react-client/dist`));
