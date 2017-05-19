@@ -51,7 +51,10 @@ class App extends React.Component {
       translateOldPhrase: undefined,
       translateNewPhrase: undefined,
     };
-forickMain = this.clickMain.bind(this);
+    this.menuOpen = this.menuOpen.bind(this);
+    this.search = this.search.bind(this);
+    this.clickFav = this.clickFav.bind(this);
+    this.clickMain = this.clickMain.bind(this);
     this.clickHelp = this.clickHelp.bind(this);
     this.saveToFavorite = this.saveToFavorite.bind(this);
     this.handleSnackAdd = this.handleSnackAdd.bind(this);
@@ -160,16 +163,16 @@ forickMain = this.clickMain.bind(this);
 
   updateTranslateFrom() {
     console.log('updating translate from');
-    this.setState({
-      translateFromLang: 'en'
-    });
+    // this.setState({
+    //   translateFromLang: 'en'
+    // });
   }
 
   updateTranslateTo() {
     console.log('updating translate to');
-    this.setState({
-      translateToLang: 'es'
-    });
+    // this.setState({
+    //   translateToLang: 'es'
+    // });
   }
 
   // added handler for Google Translate
