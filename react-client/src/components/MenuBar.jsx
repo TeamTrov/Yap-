@@ -66,6 +66,10 @@ class MenuBar extends React.Component {
             primaryText="Favorites"
             onTouchTap={this.favoriteHandler}
           />
+        <MenuItem
+          primaryText="Translate"
+          onTouchTap={this.props.onClickTranslate}
+          />
           <MenuItem
             primaryText="Help &amp; feedback"
             onTouchTap={this.helpHandler}
@@ -89,6 +93,8 @@ MenuBar.propTypes = {
   checkLogin: PropTypes.func,
   onClickMain: PropTypes.func,
   onClickHelp: PropTypes.func,
+  // added for translation
+  onClickTranslate: PropTypes.func,
 };
 
 MenuBar.defaultProps = {
@@ -100,6 +106,7 @@ MenuBar.defaultProps = {
   checkLogin: PropTypes.func,
   onClickMain: PropTypes.func,
   onClickHelp: PropTypes.func,
+  onClickTranslate: PropTypes.func,
 };
 
 export default MenuBar;

@@ -26,10 +26,9 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <h1>SearchBar Component</h1>
         <SearchInput
-          style={{ float: 'left', backgroundColor: 'white' }}
-          hintText="Start typing"
+          style={styles.searchInput}
+          hintText="Search for food and more"
           dataSource={blank}
           searchText={this.state.input}
           onUpdateInput={this.onUpdateInput}
