@@ -151,6 +151,10 @@ const styles = {
     paddingLeft: '60px',
     paddingRight: '30px',
   },
+  yapPlusLogo: {
+    paddingTop: '6px',
+    paddingLeft: '6px',
+  },
 };
 
 export default styles;
