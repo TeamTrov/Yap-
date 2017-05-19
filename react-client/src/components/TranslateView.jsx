@@ -10,6 +10,7 @@ class TranslateView extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    document.body.style.backgroundImage = `url('HQworldMap.jpg')`;
     this.setState({
       translateOldPhrase: newProps.translateOldPhrase,
       translateNewPhrase: newProps.translateNewPhrase,
