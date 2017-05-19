@@ -10,9 +10,9 @@ module.exports = {
     path: DIST_DIR,
   },
   module: {
-    loaders: [
-      {
+    loaders: [{
         test: /\.jsx?/,
+        exclude: /node_modules/,
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
