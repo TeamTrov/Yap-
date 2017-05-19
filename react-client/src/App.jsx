@@ -63,12 +63,7 @@ class App extends React.Component {
     this.handleSnackRemove = this.handleSnackRemove.bind(this);
     this.speechRemoveHandler = this.speechRemoveHandler.bind(this);
     this.speechRemove = this.speechRemove.bind(this);
-<<<<<<< HEAD
-=======
     this.handleFBPost = this.handleFBPost.bind(this);
-
-    // added
->>>>>>> FB
     this.clickTranslate = this.clickTranslate.bind(this);
   }
 
