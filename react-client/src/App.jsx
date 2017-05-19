@@ -412,7 +412,7 @@ class App extends React.Component {
       <MuiThemeProvider>
         <div>
           <AppBar
-            title="Yap!"
+            title="Yap+"
             style={{ backgroundColor: '#FFA726' }}
             onLeftIconButtonTouchTap={this.menuOpen}
           />
