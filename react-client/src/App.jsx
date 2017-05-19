@@ -51,10 +51,7 @@ class App extends React.Component {
       translateOldPhrase: undefined,
       translateNewPhrase: undefined,
     };
-    this.menuOpen = this.menuOpen.bind(this);
-    this.search = this.search.bind(this);
-    this.clickFav = this.clickFav.bind(this);
-    this.clickMain = this.clickMain.bind(this);
+forickMain = this.clickMain.bind(this);
     this.clickHelp = this.clickHelp.bind(this);
     this.saveToFavorite = this.saveToFavorite.bind(this);
     this.handleSnackAdd = this.handleSnackAdd.bind(this);
@@ -92,6 +89,8 @@ class App extends React.Component {
         'go to front': this.clickMain,
         'help me': this.clickHelp,
         'translate': this.clickTranslate,
+        'language translate from': this.updateTranslateFrom,
+        'laguage translate to': this.updateTranslateTo,
         'travel to': this.clickTravel,
         'save to favorites': () => {
           this.saveToFavorite(this.state.data);
@@ -151,7 +150,26 @@ class App extends React.Component {
   }
 
   clickTravel() {
-    console.log('CLICKED TRAVEL');
+    console.log('traveling to...');
+    // location
+    this.setState({
+      lat: response.lat,
+      lng: response.long,
+    }, () => axios.post('/location', response));
+  }
+
+  updateTranslateFrom() {
+    console.log('updating translate from');
+    this.setState({
+      translateFromLang: 'en'
+    });
+  }
+
+  updateTranslateTo() {
+    console.log('updating translate to');
+    this.setState({
+      translateToLang: 'es'
+    });
   }
 
   // added handler for Google Translate
