@@ -127,6 +127,28 @@ const styles = {
     paddingTop: '150px',
     fontWeight: 'normal',
   },
+  translateBox: {
+    position: 'absolute',
+    display: 'inline',
+    marginLeft: '20px',
+    marginRight: '20px',
+    marginBottom: '20px',
+    textAlign: 'center',
+    border: 'solid',
+  },
+  translateBoxFrom: {
+    float: 'left',
+    textAlign: 'center',
+    borderRight: 'solid',
+    paddingRight: '80px',
+    paddingLeft: '30px',
+  },
+  translateBoxTo: {
+    float: 'right',
+    textAlign: 'center',
+    paddingLeft: '60px',
+    paddingRight: '30px',
+  },
 };
 
 export default styles;
