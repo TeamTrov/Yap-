@@ -94,10 +94,12 @@ class Main extends React.Component {
       } else if (err) {
         console.log('User cancelled');
       }
-    }, {
-      scope: 'publish_actions', 
-      return_scopes: true
-    });
+    }
+//      , {
+//       scope: 'publish_actions', 
+//       return_scopes: true
+//     }
+   );
   }
 
   logoutFB() {
