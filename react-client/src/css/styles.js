@@ -23,6 +23,8 @@ const styles = {
     maxHeight: '9%',
   },
   cardStyle: {
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
     display: 'table',
     maxWidth: '33%',
     margin: '-1% 2% 0 0',
@@ -148,6 +150,10 @@ const styles = {
     textAlign: 'center',
     paddingLeft: '60px',
     paddingRight: '30px',
+  },
+  yapPlusLogo: {
+    paddingTop: '6px',
+    paddingLeft: '6px',
   },
 };
 
