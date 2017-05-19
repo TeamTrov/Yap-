@@ -66,6 +66,10 @@ class MenuBar extends React.Component {
             primaryText="Favorites"
             onTouchTap={this.favoriteHandler}
           />
+        <MenuItem
+          primaryText="Translate"
+          onTouchTap={this.props.onClickTranslate}
+          />
           <MenuItem
             primaryText="Help &amp; feedback"
             onTouchTap={this.helpHandler}
@@ -73,10 +77,6 @@ class MenuBar extends React.Component {
           <MenuItem
             primaryText="Sign out"
             onTouchTap={this.props.logoutFB}
-          />
-          <MenuItem
-            primaryText="TRANSLATE"
-            onTouchTap={this.props.onClickTranslate}
           />
         </Menu>
       </Popover>
