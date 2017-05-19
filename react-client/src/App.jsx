@@ -29,6 +29,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      FBMessage: undefined,
       data: undefined,
       favData: undefined,
       delItem: undefined,
@@ -62,6 +63,12 @@ class App extends React.Component {
     this.handleSnackRemove = this.handleSnackRemove.bind(this);
     this.speechRemoveHandler = this.speechRemoveHandler.bind(this);
     this.speechRemove = this.speechRemove.bind(this);
+<<<<<<< HEAD
+=======
+    this.handleFBPost = this.handleFBPost.bind(this);
+
+    // added
+>>>>>>> FB
     this.clickTranslate = this.clickTranslate.bind(this);
   }
 
@@ -88,6 +95,7 @@ class App extends React.Component {
     if (annyang) {
       const commands = {
         'show me *input': this.search,
+        'post to facebook *inputo': this.handleFBPost,
         'go to favorites': this.clickFav,
         'go to front': this.clickMain,
         'help me': this.clickHelp,
@@ -137,6 +145,20 @@ class App extends React.Component {
   // this is absolutely needed to deal with async nature of setState
   speechRemove() {
     this.setState(() => this.removeFromFavorite(this.state.delItem));
+  }
+
+  handleFBPost(inputo) {
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: inputo ? 'Posted to Facebook: '+ inputo : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
   }
 
   // snack is the popup bars on add and remove
@@ -438,7 +460,7 @@ class App extends React.Component {
           {condRender}
           <Snackbar
             open={this.state.snackBarAdd}
-            message="Added to your Favorites"
+            message={this.state.FBMessage ? this.state.FBMessage : "Added to your Favorites"}
             autoHideDuration={4000}
             onRequestClose={this.handleSnackAdd}
           />
