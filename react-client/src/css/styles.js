@@ -23,6 +23,8 @@ const styles = {
     maxHeight: '9%',
   },
   cardStyle: {
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
     display: 'table',
     maxWidth: '33%',
     margin: '-1% 2% 0 0',
@@ -126,6 +128,26 @@ const styles = {
   tagline: {
     paddingTop: '150px',
     fontWeight: 'normal',
+  },
+  translateBox: {
+    position: 'absolute',
+    display: 'inline',
+    marginLeft: '20px',
+    marginRight: '20px',
+    marginBottom: '20px',
+    textAlign: 'center',
+    border: 'solid',
+  },
+  translateBoxFrom: {
+    float: 'left',
+    textAlign: 'center',
+    borderRight: 'solid',
+    paddingRight: '60px',
+  },
+  translateBoxTo: {
+    float: 'right',
+    textAlign: 'center',
+    paddingLeft: '60px',
   },
 };
 
