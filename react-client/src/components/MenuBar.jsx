@@ -74,6 +74,10 @@ class MenuBar extends React.Component {
             primaryText="Sign out"
             onTouchTap={this.props.logoutFB}
           />
+          <MenuItem
+            primaryText="TRANSLATE"
+            onTouchTap={this.props.onClickTranslate}
+          />
         </Menu>
       </Popover>
     );
@@ -89,6 +93,8 @@ MenuBar.propTypes = {
   checkLogin: PropTypes.func,
   onClickMain: PropTypes.func,
   onClickHelp: PropTypes.func,
+  // added for translation
+  onClickTranslate: PropTypes.func,
 };
 
 MenuBar.defaultProps = {
@@ -100,6 +106,7 @@ MenuBar.defaultProps = {
   checkLogin: PropTypes.func,
   onClickMain: PropTypes.func,
   onClickHelp: PropTypes.func,
+  onClickTranslate: PropTypes.func,
 };
 
 export default MenuBar;
