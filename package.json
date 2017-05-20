@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines" : { "npm" : "^4.2.0" } },
+  "engines" : { "npm" : "^4.2.0" },
   "scripts": {
     "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
