@@ -188,6 +188,17 @@ class App extends React.Component {
     // hagerstown, md: 39.6418° N, 77.7200° W
     console.log(`The current lat/lng: ${this.state.lat}/${this.state.lng}`);
 
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: input ? 'Now taking you to: '+ input : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
     // location
     // use node geocoder here to grab lat/long
     // this.setState({
