@@ -79,6 +79,7 @@ class App extends React.Component {
     this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
     this.updateTranslateTo = this.updateTranslateTo.bind(this);
+    this.clickTravel = this.clickTravel.bind(this);
   }
 
   componentWillMount() {
@@ -183,7 +184,7 @@ class App extends React.Component {
   }
 
   clickTravel(input) {
-    console.log(`traveling to ${input}!`);
+    console.log(`You are now traveling to ${input}!`);
     // location
     // use node geocoder here to grab lat/long
     // this.setState({
@@ -193,7 +194,7 @@ class App extends React.Component {
   }
 
   updateTranslateTo(input) {
-    console.log(`updating translate to: ${input}`);
+    console.log(`Updating destination translate language to: ${input}`);
     var langCode = getLanguageCode(input);
     console.log(this);
     this.setState({
@@ -412,7 +413,7 @@ class App extends React.Component {
       var t = this.state.translateToLang
       var fromThing = getLanguage(f);
       var toThing = getLanguage(t);
-      
+
       condRender = (
         <div>
           <TranslateView
