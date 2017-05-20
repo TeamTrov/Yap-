@@ -39,9 +39,9 @@ module.exports = {
                 gifsicle: {
                   interlaced: true,
                 },
-                optipng: {
-                  optimizationLevel: 7,
-                },
+                // optipng: {
+                //   optimizationLevel: 7,
+                // },
               },
             },
           }],
