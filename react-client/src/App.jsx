@@ -185,6 +185,9 @@ class App extends React.Component {
 
   clickTravel(input) {
     console.log(`You are now traveling to ${input}!`);
+    // hagerstown, md: 39.6418° N, 77.7200° W
+    console.log(`The current lat/lng: ${this.state.lat}/${this.state.lng}`);
+    
     // location
     // use node geocoder here to grab lat/long
     // this.setState({
