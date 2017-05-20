@@ -24,7 +24,7 @@ class TranslateView extends React.Component {
     if (this.state.translateOldPhrase === undefined) {
       condRender = (
         <div>
-          <p> No translation!! </p>
+          <p style={styles.noTranslationYet}>No translation yet. Use Speech Commands to initiate a translation.</p>
         </div>
       );
     } else {
