@@ -24,13 +24,13 @@ const getCoords = () => new Promise((resolve, reject) => {
   });
 });
 
-let getLanguageCode = (chosenLanguage) => {
+const getLanguageCode = (chosenLanguage) => {
   console.log('called getLanguageCode');
   var newCode = languages["langToCode"][chosenLanguage]
   return newCode;
 }
 
-let getLanguage = (code) => {
+const getLanguage = (code) => {
   console.log('called getLanguage');
   var lang = languages["codeToLang"][code];
   return lang;
@@ -78,6 +78,7 @@ class App extends React.Component {
     this.speechRemove = this.speechRemove.bind(this);
     this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
+    this.updateTranslateTo = this.updateTranslateTo.bind(this);
   }
 
   componentWillMount() {
@@ -108,7 +109,7 @@ class App extends React.Component {
         'go to front': this.clickMain,
         'help me': this.clickHelp,
         'translate *input': this.clickTranslate,
-        'update language translate to *input': this.updateTranslateTo,
+        'update language to *input': this.updateTranslateTo,
         'travel to *input': this.clickTravel,
         'save to favorites': () => {
           this.saveToFavorite(this.state.data);
@@ -194,6 +195,7 @@ class App extends React.Component {
   updateTranslateTo(input) {
     console.log(`updating translate to: ${input}`);
     var langCode = getLanguageCode(input);
+    console.log(this);
     this.setState({
       translateToLang: langCode
     });

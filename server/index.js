@@ -6,7 +6,8 @@ const Locale = require('../database-mongo');
 const request = require ('request');
 const axios = require('axios');
 const morgan = require('morgan');
-const yelpToken = "KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx";
+const yelpToken = 'KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx';
+console.log(yelpToken);
 
 let location = {};
 const app = express();
