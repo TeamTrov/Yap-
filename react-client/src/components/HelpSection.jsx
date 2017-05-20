@@ -2,6 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
+import styles from '../css/styles';
 
 const HelpSection = (props) => {
   const actions = [
@@ -18,6 +19,7 @@ const HelpSection = (props) => {
         actions={actions}
         open={toggle}
         onRequestClose={props.clickHelp}
+        styles={styles.Dialog}
       >
         <div>
           <p>Say &quot;Show me SOMETHING&quot;: To start your search</p>
