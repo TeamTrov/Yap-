@@ -56,7 +56,6 @@ class MenuBar extends React.Component {
         zDepth={3}
         onRequestClose={this.handleRequestClose}
       >
-        <h1>MenuBar Component</h1>
         <Menu>
           <MenuItem
             primaryText="Main"

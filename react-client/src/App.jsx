@@ -24,13 +24,13 @@ const getCoords = () => new Promise((resolve, reject) => {
   });
 });
 
-let getLanguageCode = (chosenLanguage) => {
+const getLanguageCode = (chosenLanguage) => {
   console.log('called getLanguageCode');
   var newCode = languages["langToCode"][chosenLanguage]
   return newCode;
 }
 
-let getLanguage = (code) => {
+const getLanguage = (code) => {
   console.log('called getLanguage');
   var lang = languages["codeToLang"][code];
   return lang;
@@ -42,6 +42,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      FBMessage: undefined,
       data: undefined,
       favData: undefined,
       delItem: undefined,
@@ -75,7 +76,9 @@ class App extends React.Component {
     this.handleSnackRemove = this.handleSnackRemove.bind(this);
     this.speechRemoveHandler = this.speechRemoveHandler.bind(this);
     this.speechRemove = this.speechRemove.bind(this);
+    this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
+    this.updateTranslateTo = this.updateTranslateTo.bind(this);
   }
 
   componentWillMount() {
@@ -101,11 +104,12 @@ class App extends React.Component {
     if (annyang) {
       const commands = {
         'show me *input': this.search,
+        'post to facebook *inputo': this.handleFBPost,
         'go to favorites': this.clickFav,
         'go to front': this.clickMain,
         'help me': this.clickHelp,
         'translate *input': this.clickTranslate,
-        'update language translate to *input': this.updateTranslateTo,
+        'update language to *input': this.updateTranslateTo,
         'travel to *input': this.clickTravel,
         'save to favorites': () => {
           this.saveToFavorite(this.state.data);
@@ -151,6 +155,20 @@ class App extends React.Component {
     this.setState(() => this.removeFromFavorite(this.state.delItem));
   }
 
+  handleFBPost(inputo) {
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: inputo ? 'Posted to Facebook: '+ inputo : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
+  }
+
   // snack is the popup bars on add and remove
   handleSnackAdd() {
     this.setState({
@@ -177,6 +195,7 @@ class App extends React.Component {
   updateTranslateTo(input) {
     console.log(`updating translate to: ${input}`);
     var langCode = getLanguageCode(input);
+    console.log(this);
     this.setState({
       translateToLang: langCode
     });
@@ -201,7 +220,9 @@ class App extends React.Component {
       mapView: false
     });
 
-    var phrase = 'I am tired';
+    // var phrase = 'I am tired';
+    var phrase = input;
+
     var fromLang = this.state.translateFromLang;
     var toLang = this.state.translateToLang;
 
@@ -391,7 +412,7 @@ class App extends React.Component {
       var t = this.state.translateToLang
       var fromThing = getLanguage(f);
       var toThing = getLanguage(t);
-
+      
       condRender = (
         <div>
           <TranslateView
@@ -422,7 +443,7 @@ class App extends React.Component {
       <MuiThemeProvider>
         <div>
           <AppBar
-            title="Yap!"
+            title="Yap+"
             style={{ backgroundColor: '#FFA726' }}
             onLeftIconButtonTouchTap={this.menuOpen}
           />
@@ -448,7 +469,7 @@ class App extends React.Component {
           {condRender}
           <Snackbar
             open={this.state.snackBarAdd}
-            message="Added to your Favorites"
+            message={this.state.FBMessage ? this.state.FBMessage : "Added to your Favorites"}
             autoHideDuration={4000}
             onRequestClose={this.handleSnackAdd}
           />

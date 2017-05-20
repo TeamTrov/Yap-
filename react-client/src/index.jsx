@@ -22,7 +22,8 @@ class Main extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = () => {
       FB.init({
-        appId: '1909507675963563', //your fb api key here
+        // appId: '1909507675963563', //your fb api key here
+        appId: '1305613922867281', //your fb api key here
         cookie: true,
         xfbml: true,
         version: 'v2.1',
@@ -45,8 +46,10 @@ class Main extends React.Component {
 
   testAPI() {
     console.log('Fetching info from Facebook API ');
-    FB.api('/me', (response) => {
+    FB.api('/me', 'get', { fields: 'id,name,timezone' }, (response) => {
       console.log(`Successful login for: ${response.name}`);
+      console.log('tzone: ', response.timezone);
+      console.log('token: ', window.localStorage.getItem('fb_access_token'))
     });
   }
 
@@ -73,19 +76,30 @@ class Main extends React.Component {
     });
   }
 
+/////////////about to rewrite loginFB
+
+
   loginFB() {
     FB.login((response) => {
       if (response.authResponse) {
-        FB.api('/me', (response) => {
+
+
+        FB.api('/me', 'get', { fields: 'id,name,timezeone' }, (response) => {
           console.log(`FB Login, username: ${response.name}.`);
+          console.log('loginFB response.timezone: ', response.timezone)
           this.setState({
             isLogin: true,
           });
         });
-      } else {
+      } else if (err) {
         console.log('User cancelled');
       }
-    });
+    }
+//      , {
+//       scope: 'publish_actions', 
+//       return_scopes: true
+//     }
+   );
   }
 
   logoutFB() {

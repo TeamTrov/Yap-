@@ -23,6 +23,8 @@ const styles = {
     maxHeight: '9%',
   },
   cardStyle: {
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
     display: 'table',
     maxWidth: '33%',
     margin: '-1% 2% 0 0',
@@ -130,11 +132,16 @@ const styles = {
   translateBox: {
     position: 'absolute',
     display: 'inline',
-    marginLeft: '20px',
-    marginRight: '20px',
-    marginBottom: '20px',
     textAlign: 'center',
-    border: 'solid',
+    margin: 'auto',
+    marginTop: '150px',
+    marginLeft: '50px',
+    width: '50%',
+    border: '3px solid #DCDCDC',
+    borderRadius: '5px',
+    padding: '10px',
+    background: 'white',
+    fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
   },
   translateBoxFrom: {
     float: 'left',
@@ -148,6 +155,10 @@ const styles = {
     textAlign: 'center',
     paddingLeft: '60px',
     paddingRight: '30px',
+  },
+  yapPlusLogo: {
+    paddingTop: '6px',
+    paddingLeft: '6px',
   },
 };
 
