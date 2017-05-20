@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
-    "prod": "NODE_ENV=production node server.js",
+    "prod": "NODE_ENV=production server/index.js",
     "server-dev": "nodemon server/index.js",
     "db-start": "mongod --dbpath ./database-mongo/Data/db",
     "postinstall": "webpack -p"
