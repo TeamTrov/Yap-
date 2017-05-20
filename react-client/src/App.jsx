@@ -13,6 +13,7 @@ import FavoriteView from './components/FavoriteView';
 import HelpSection from './components/HelpSection';
 import Gmap from './components/Gmap';
 import TranslateView from './components/TranslateView';
+import languages from './assets/languageList.js'
 import styles from './css/styles';
 
 injectTapEventPlugin();
@@ -22,6 +23,18 @@ const getCoords = () => new Promise((resolve, reject) => {
     resolve({ lat: position.coords.latitude, long: position.coords.longitude });
   });
 });
+
+const getLanguageCode = (chosenLanguage) => {
+  console.log('called getLanguageCode');
+  var newCode = languages["langToCode"][chosenLanguage]
+  return newCode;
+}
+
+const getLanguage = (code) => {
+  console.log('called getLanguage');
+  var lang = languages["codeToLang"][code];
+  return lang;
+}
 
 let location = {};
 
@@ -47,8 +60,8 @@ class App extends React.Component {
       lng: undefined,
       // translation info
       translateView: false,
-      translateFromLang: undefined,
-      translateToLang: undefined,
+      translateFromLang: 'en',
+      translateToLang: 'es',
       translateOldPhrase: undefined,
       translateNewPhrase: undefined,
     };
@@ -65,6 +78,7 @@ class App extends React.Component {
     this.speechRemove = this.speechRemove.bind(this);
     this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
+    this.updateTranslateTo = this.updateTranslateTo.bind(this);
   }
 
   componentWillMount() {
@@ -94,10 +108,9 @@ class App extends React.Component {
         'go to favorites': this.clickFav,
         'go to front': this.clickMain,
         'help me': this.clickHelp,
-        'translate': this.clickTranslate,
-        'language translate from': this.updateTranslateFrom,
-        'laguage translate to': this.updateTranslateTo,
-        'travel to': this.clickTravel,
+        'translate *input': this.clickTranslate,
+        'update language to *input': this.updateTranslateTo,
+        'travel to *input': this.clickTravel,
         'save to favorites': () => {
           this.saveToFavorite(this.state.data);
         },
@@ -169,31 +182,27 @@ class App extends React.Component {
     });
   }
 
-  clickTravel() {
-    console.log('traveling to...');
+  clickTravel(input) {
+    console.log(`traveling to ${input}!`);
     // location
+    // use node geocoder here to grab lat/long
+    // this.setState({
+    //   lat: response.lat,
+    //   lng: response.long,
+    // }, () => axios.post('/location', response));
+  }
+
+  updateTranslateTo(input) {
+    console.log(`updating translate to: ${input}`);
+    var langCode = getLanguageCode(input);
+    console.log(this);
     this.setState({
-      lat: response.lat,
-      lng: response.long,
-    }, () => axios.post('/location', response));
-  }
-
-  updateTranslateFrom() {
-    console.log('updating translate from');
-    // this.setState({
-    //   translateFromLang: 'en'
-    // });
-  }
-
-  updateTranslateTo() {
-    console.log('updating translate to');
-    // this.setState({
-    //   translateToLang: 'es'
-    // });
+      translateToLang: langCode
+    });
   }
 
   // added handler for Google Translate
-  clickTranslate() {
+  clickTranslate(input) {
     // this.setState({
     //   isLoading: true,
     // });
@@ -211,22 +220,22 @@ class App extends React.Component {
       mapView: false
     });
 
-    var testOldPhrase = 'I am hungry';
-    var testFromLang = 'en';
-    var testToLang = 'es';
+    // var phrase = 'I am tired';
+    var phrase = input;
+
+    var fromLang = this.state.translateFromLang;
+    var toLang = this.state.translateToLang;
 
     this.setState({
-      translateOldPhrase: testOldPhrase,
-      translateFromLang: testFromLang,
-      translateToLang: testToLang,
+      translateOldPhrase: phrase,
     })
 
-    console.log('Translate search using test input: ', testOldPhrase);
+    console.log('Translate search using test input: ', phrase);
 
-    axios.get(`/translate?from=${testFromLang}&to=${testToLang}&query=${testOldPhrase}`)
+    axios.get(`/translate?from=${fromLang}&to=${toLang}&query=${phrase}`)
     .then((response) => {
       console.log('GOOGLE TRANSLATE API...');
-      console.log(`From ${testFromLang}:${testOldPhrase} => ${testToLang}:${response.data}`);
+      console.log(`From ${fromLang}:${phrase} => ${toLang}:${response.data}`);
 
       this.setState({
         translateNewPhrase: response.data,
@@ -399,13 +408,18 @@ class App extends React.Component {
       );
     // check if translate view state is set to true
     } else if (isTranslateView && !isMainView) {
+      var f = this.state.translateFromLang;
+      var t = this.state.translateToLang
+      var fromThing = getLanguage(f);
+      var toThing = getLanguage(t);
+      
       condRender = (
         <div>
           <TranslateView
             translateOldPhrase={this.state.translateOldPhrase}
             translateNewPhrase={this.state.translateNewPhrase}
-            translateFromLang={this.state.translateFromLang}
-            translateToLang={this.state.translateToLang}
+            translateFromLang={fromThing}
+            translateToLang={toThing}
             />
         </div>
       );
