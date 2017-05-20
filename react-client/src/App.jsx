@@ -61,9 +61,9 @@ class App extends React.Component {
       // translation info
       translateView: false,
       translateFromLang: 'en',
-      translateToLang: 'es',
-      translateOldPhrase: undefined,
-      translateNewPhrase: undefined,
+      translateToLang: '',
+      translateOldPhrase: '',
+      translateNewPhrase: '',
     };
     this.menuOpen = this.menuOpen.bind(this);
     this.search = this.search.bind(this);
@@ -198,7 +198,9 @@ class App extends React.Component {
     var langCode = getLanguageCode(input);
     console.log(this);
     this.setState({
-      translateToLang: langCode
+      translateToLang: langCode,
+      translateOldPhrase: '',
+      translateNewPhrase: ''
     });
   }
 
@@ -442,10 +444,14 @@ class App extends React.Component {
 
     return (
       <MuiThemeProvider>
-        <div>
+        <div id="YapPlus">
           <AppBar
             title="Yap+"
-            style={{ backgroundColor: '#FFA726' }}
+            style={{
+              backgroundColor: '#FFA726',
+              fontFamily: `"Verlag A", "Verlag B"`,
+              fontWeight: '700',
+              fontStyle: 'normal' }}
             onLeftIconButtonTouchTap={this.menuOpen}
           />
           <SearchBar
