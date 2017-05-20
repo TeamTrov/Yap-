@@ -22,8 +22,8 @@ class Main extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = () => {
       FB.init({
-        // appId: '1909507675963563', //your fb api key here
-        appId: '1305613922867281', //your fb api key here
+        appId: '1909507675963563', // trov fb api key here
+        // appId: '1305613922867281', //your fb api key here
         cookie: true,
         xfbml: true,
         version: 'v2.1',
@@ -96,7 +96,7 @@ class Main extends React.Component {
       }
     }
 //      , {
-//       scope: 'publish_actions', 
+//       scope: 'publish_actions',
 //       return_scopes: true
 //     }
    );
