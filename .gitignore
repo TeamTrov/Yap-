@@ -8,7 +8,10 @@ node_modules
 compiled
 
 ## React ##
-react-client/dist/bundle
+
+
+## Webpack ##
+bundle.js
 
 
 ## NPM-Debugger ##

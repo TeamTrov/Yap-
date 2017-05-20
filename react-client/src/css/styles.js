@@ -132,11 +132,17 @@ const styles = {
   translateBox: {
     position: 'absolute',
     display: 'inline',
-    marginLeft: '20px',
-    marginRight: '20px',
-    marginBottom: '20px',
     textAlign: 'center',
-    border: 'solid',
+    margin: '150px auto auto 50px',
+    width: '50%',
+    border: '3px solid #DCDCDC',
+    borderWidth: '30px 8px 30px 8px',
+    borderRadius: '5px',
+    padding: '10px',
+    background: 'white',
+    fontFamily: `"Lucida Sans Unicode", "Lucida Grande", sans-serif`,
+    boxShadow: '5px 5px 10px #888888',
+    opacity: '.9',
   },
   translateBoxFrom: {
     float: 'left',
@@ -144,12 +150,17 @@ const styles = {
     borderRight: 'solid',
     paddingRight: '80px',
     paddingLeft: '30px',
+    border: 'none',
   },
   translateBoxTo: {
     float: 'right',
     textAlign: 'center',
     paddingLeft: '60px',
     paddingRight: '30px',
+  },
+  yapPlusLogo: {
+    paddingTop: '6px',
+    paddingLeft: '6px',
   },
 };
 

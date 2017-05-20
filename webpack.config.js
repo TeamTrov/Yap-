@@ -10,9 +10,9 @@ module.exports = {
     path: DIST_DIR,
   },
   module: {
-    loaders: [
-      {
+    loaders: [{
         test: /\.jsx?/,
+        exclude: /node_modules/,
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
@@ -39,9 +39,9 @@ module.exports = {
                 gifsicle: {
                   interlaced: true,
                 },
-                optipng: {
-                  optimizationLevel: 7,
-                },
+                // optipng: {
+                //   optimizationLevel: 7,
+                // },
               },
             },
           }],
