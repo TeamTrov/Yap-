@@ -20,17 +20,31 @@ class TranslateView extends React.Component {
   }
 
   render() {
+    let condRender;
+    if (this.state.translateOldPhrase === undefined) {
+      condRender = (
+        <div>
+          <p> No translation!! </p>
+        </div>
+      );
+    } else {
+      condRender = (
+        <div style={styles.translateBox}>
+          <h1> Translate </h1>
+          <div style={styles.translateBoxFrom}>
+            <h3> {this.state.translateFromLang} </h3>
+            <h3> {this.state.translateOldPhrase} </h3>
+          </div>
+          <div style={styles.translateBoxTo}>
+            <h3> {this.state.translateToLang} </h3>
+            <h3> {this.state.translateNewPhrase} </h3>
+          </div>
+        </div>
+      );
+    }
     return(
-      <div style={styles.translateBox}>
-        <h1> Translate </h1>
-        <div style={styles.translateBoxFrom}>
-          <h3> {this.state.translateFromLang} </h3>
-          <h3> {this.state.translateOldPhrase} </h3>
-        </div>
-        <div style={styles.translateBoxTo}>
-          <h3> {this.state.translateToLang} </h3>
-          <h3> {this.state.translateNewPhrase} </h3>
-        </div>
+      <div>
+        {condRender}
       </div>
     );
   }

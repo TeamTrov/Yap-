@@ -412,7 +412,7 @@ class App extends React.Component {
       var t = this.state.translateToLang
       var fromThing = getLanguage(f);
       var toThing = getLanguage(t);
-
+      
       condRender = (
         <div>
           <TranslateView
