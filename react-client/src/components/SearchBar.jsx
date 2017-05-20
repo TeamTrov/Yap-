@@ -34,6 +34,7 @@ class SearchBar extends React.Component {
           onUpdateInput={this.onUpdateInput}
         />
         <RaisedButton
+          ref="raisedButton"
           style={styles.searchButton}
           label="Search" backgroundColor={styles.mainColor}
           labelColor="rgb(255, 255, 255)"
