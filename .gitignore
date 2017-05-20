@@ -8,7 +8,8 @@ node_modules
 compiled
 
 ## React ##
-
+yarn.lock
+react-client/dist/bundle.js
 
 ## NPM-Debugger ##
 npm-debug.log
