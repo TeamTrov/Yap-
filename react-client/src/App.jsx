@@ -201,7 +201,9 @@ class App extends React.Component {
       mapView: false
     });
 
-    var phrase = 'I am tired';
+    // var phrase = 'I am tired';
+    var phrase = input;
+
     var fromLang = this.state.translateFromLang;
     var toLang = this.state.translateToLang;
 
