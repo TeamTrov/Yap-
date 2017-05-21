@@ -11,6 +11,10 @@ compiled
 yarn.lock
 react-client/dist/bundle.js
 
+## Webpack ##
+react-client/dist/bundle.js
+
+
 ## NPM-Debugger ##
 npm-debug.log
 
