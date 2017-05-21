@@ -11,7 +11,7 @@ compiled
 
 
 ## Webpack ##
-bundle.js
+react-client/dist/bundle.js
 
 
 ## NPM-Debugger ##
