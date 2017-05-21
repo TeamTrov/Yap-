@@ -61,9 +61,9 @@ class App extends React.Component {
       // translation info
       translateView: false,
       translateFromLang: 'en',
-      translateToLang: 'es',
-      translateOldPhrase: undefined,
-      translateNewPhrase: undefined,
+      translateToLang: '',
+      translateOldPhrase: '',
+      translateNewPhrase: '',
     };
     this.menuOpen = this.menuOpen.bind(this);
     this.search = this.search.bind(this);
@@ -79,6 +79,7 @@ class App extends React.Component {
     this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
     this.updateTranslateTo = this.updateTranslateTo.bind(this);
+    this.clickTravel = this.clickTravel.bind(this);
   }
 
   componentWillMount() {
@@ -183,7 +184,21 @@ class App extends React.Component {
   }
 
   clickTravel(input) {
-    console.log(`traveling to ${input}!`);
+    console.log(`You are now traveling to ${input}!`);
+    // hagerstown, md: 39.6418° N, 77.7200° W
+    console.log(`The current lat/lng: ${this.state.lat}/${this.state.lng}`);
+
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: input ? 'Now taking you to: '+ input : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
     // location
     // use node geocoder here to grab lat/long
     // this.setState({
@@ -193,12 +208,26 @@ class App extends React.Component {
   }
 
   updateTranslateTo(input) {
-    console.log(`updating translate to: ${input}`);
+    console.log(`Updating destination translate language to: ${input}`);
     var langCode = getLanguageCode(input);
     console.log(this);
     this.setState({
-      translateToLang: langCode
+      translateToLang: langCode,
+      translateOldPhrase: '',
+      translateNewPhrase: ''
     });
+
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: input ? 'Now translating to: '+ input : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
   }
 
   // added handler for Google Translate
@@ -412,7 +441,7 @@ class App extends React.Component {
       var t = this.state.translateToLang
       var fromThing = getLanguage(f);
       var toThing = getLanguage(t);
-      
+
       condRender = (
         <div>
           <TranslateView
@@ -441,10 +470,14 @@ class App extends React.Component {
 
     return (
       <MuiThemeProvider>
-        <div>
+        <div id="YapPlus">
           <AppBar
             title="Yap+"
-            style={{ backgroundColor: '#FFA726' }}
+            style={{
+              backgroundColor: '#FFA726',
+              fontFamily: `"Verlag A", "Verlag B"`,
+              fontWeight: '700',
+              fontStyle: 'normal' }}
             onLeftIconButtonTouchTap={this.menuOpen}
           />
           <SearchBar

@@ -6,6 +6,7 @@ class TranslateView extends React.Component {
     super(props);
     this.state = {
       translateData: 'translation goes here',
+      translateToLang: this.props.translateToLang
     };
   }
 
@@ -21,10 +22,10 @@ class TranslateView extends React.Component {
 
   render() {
     let condRender;
-    if (this.state.translateOldPhrase === undefined) {
+    if (this.state.translateToLang === '') {
       condRender = (
         <div>
-          <p> No translation!! </p>
+          <p style={styles.noTranslationYet}>No translation yet. Use Speech Commands to initiate a translation.</p>
         </div>
       );
     } else {
