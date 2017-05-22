@@ -83,6 +83,7 @@ let searchGeocoder = (loc, res) => {
 /////
 
 app.post('/location', (req, res) => {
+  console.log('REQ.BODY = ', req.body);
   location = req.body;
   res.end();
 });

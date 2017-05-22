@@ -253,7 +253,7 @@ class App extends React.Component {
 
       var updateLoc = {
         lat: latitude,
-        lng: longitude,
+        long: longitude,
       }
 
       this.setState({
