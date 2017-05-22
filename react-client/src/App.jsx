@@ -36,6 +36,12 @@ const getLanguage = (code) => {
   return lang;
 }
 
+const whichUser = (u) => {
+  console.log('WHOSE THE USER?');
+  console.log(u);
+}
+
+
 let location = {};
 
 class App extends React.Component {
@@ -64,6 +70,8 @@ class App extends React.Component {
       translateToLang: '',
       translateOldPhrase: '',
       translateNewPhrase: '',
+      // FB profile info
+      userNameFB: this.props.userName,
     };
     this.menuOpen = this.menuOpen.bind(this);
     this.search = this.search.bind(this);
@@ -121,6 +129,36 @@ class App extends React.Component {
       annyang.debug();
       annyang.start();
     }
+
+    this.welcomeMessage();
+  }
+
+  // componentWillReceiveProps(newProps) {
+  //   this.setState({
+  //     userNameFB: newProps.userName,
+  //   });
+  //   whichUser(this.state.userName);
+  // }
+
+  // welcome pop up message
+  welcomeMessage() {
+
+    setTimeout( () => {
+      console.log('WELCOME TO YAP+');
+      let currentUser = this.state.userNameFB;
+      // var that = this
+      this.setState({
+        snackBarAdd: !this.state.snackBarAdd,
+        FBMessage: currentUser ? `Welcome to Yap+ , ${currentUser}!` : "no message!"
+      });
+    }, 2000);
+
+
+    setTimeout(function() {
+      this.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
   }
 
   // function to handle add to DB
@@ -232,26 +270,13 @@ class App extends React.Component {
 
   // added handler for Google Translate
   clickTranslate(input) {
-    // this.setState({
-    //   isLoading: true,
-    // });
-    // setTimeout(() => {
-    //   this.setState({
-    //     isLoading: false,
-    //   });
-    // }, 1500);
-
-    // temportary testing with hardcoded data
-    // add search/speech functionality
 
     this.setState({
       translateView: true,
       mapView: false
     });
 
-    // var phrase = 'I am tired';
     var phrase = input;
-
     var fromLang = this.state.translateFromLang;
     var toLang = this.state.translateToLang;
 
@@ -334,10 +359,15 @@ class App extends React.Component {
       mainView: true,
       favView: false,
     });
+    // add state changes
+    this.setState({
+      translateView: true,
+    });
   }
 
   // handler for menu click/speech control on Help section
   clickHelp() {
+    whichUser(this.state.userNameFB);
     this.setState({
       helpToggle: !this.state.helpToggle,
     });
