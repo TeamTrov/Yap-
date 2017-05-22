@@ -10,6 +10,7 @@ export default class Footer extends React.Component {
   render () {
     return (
     <section id="footer" style={styles.Footer}>
+      <p style={styles.Footer}>&copy;2017 Brandon Brown, Jake Holtz, Ashwin Narasimhan, Jon Stewart. All Rights Reserved</p>
     </section>
     )
   }

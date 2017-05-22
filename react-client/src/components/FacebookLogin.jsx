@@ -25,15 +25,3 @@ FacebookLogin.defaultProps = {
 };
 
 export default FacebookLogin;
-
-// <div>
-//   <div id="visitormain">
-//     <h1>Find YOUR Trov today</h1>
-//     <div id="newloginbutton">
-//       <div>Begin your Trov geoadventure now</div>
-//       <a className="btn btn-block btn-social btn-facebook" href="/auth/facebook">
-//       <span className="fa fa-facebook"></span> Log in with Facebook
-//       </a>
-//     </div>
-//   </div>
-// </div>
