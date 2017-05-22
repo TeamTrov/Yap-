@@ -36,6 +36,12 @@ const getLanguage = (code) => {
   return lang;
 }
 
+const whichUser = (u) => {
+  console.log('WHOSE THE USER?');
+  console.log(u);
+}
+
+
 let location = {};
 
 class App extends React.Component {
@@ -61,9 +67,11 @@ class App extends React.Component {
       // translation info
       translateView: false,
       translateFromLang: 'en',
-      translateToLang: 'es',
-      translateOldPhrase: undefined,
-      translateNewPhrase: undefined,
+      translateToLang: '',
+      translateOldPhrase: '',
+      translateNewPhrase: '',
+      // FB profile info
+      userNameFB: this.props.userName,
     };
     this.menuOpen = this.menuOpen.bind(this);
     this.search = this.search.bind(this);
@@ -79,6 +87,7 @@ class App extends React.Component {
     this.handleFBPost = this.handleFBPost.bind(this);
     this.clickTranslate = this.clickTranslate.bind(this);
     this.updateTranslateTo = this.updateTranslateTo.bind(this);
+    this.clickTravel = this.clickTravel.bind(this);
   }
 
   componentWillMount() {
@@ -120,6 +129,35 @@ class App extends React.Component {
       annyang.debug();
       annyang.start();
     }
+
+    this.welcomeMessage();
+  }
+
+  // componentWillReceiveProps(newProps) {
+  //   this.setState({
+  //     userNameFB: newProps.userName,
+  //   });
+  //   whichUser(this.state.userName);
+  // }
+
+  // welcome pop up message
+  welcomeMessage() {
+
+    setTimeout( () => {
+      console.log('WELCOME TO YAP+');
+      let currentUser = this.state.userNameFB;
+      // var that = this
+      this.setState({
+        snackBarAdd: !this.state.snackBarAdd,
+        FBMessage: currentUser ? `Welcome to Yap+ , ${currentUser}!` : "no message!"
+      });
+    }, 2000);
+
+    setTimeout(function() {
+      this.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
   }
 
   // function to handle add to DB
@@ -183,46 +221,81 @@ class App extends React.Component {
   }
 
   clickTravel(input) {
-    console.log(`traveling to ${input}!`);
-    // location
-    // use node geocoder here to grab lat/long
-    // this.setState({
-    //   lat: response.lat,
-    //   lng: response.long,
-    // }, () => axios.post('/location', response));
+    console.log(`The current lat/lng: ${this.state.lat}/${this.state.lng}`);
+    console.log(`You are now traveling to ${input}!`);
+    // hagerstown, md: 39.679136, -77.708215
+
+    // var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: input ? 'Now taking you to: '+ input : "no message!"
+    });
+
+    setTimeout( () => {
+      this.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
+
+    this.changeLocation(input);
+  }
+
+  // update lat/lng with new location
+  changeLocation(newLocation) {
+    console.log('OKAY WE TELEPORTIN NOW');
+    console.log('search: ', newLocation);
+
+    axios.post(`/changeLocation?destination=${newLocation}`)
+    .then((response) => {
+      // console.log(response.data[0]);
+      let latitude = response.data[0].latitude;
+      let longitude = response.data[0].longitude;
+
+      var updateLoc = {
+        lat: latitude,
+        lng: longitude,
+      }
+
+      this.setState({
+        lat: latitude,
+        lng: longitude,
+      }, () => axios.post('/location', updateLoc));
+      console.log(`The updated lat/lng: ${this.state.lat}, ${this.state.lng}`);
+    });
   }
 
   updateTranslateTo(input) {
-    console.log(`updating translate to: ${input}`);
+    console.log(`Updating destination translate language to: ${input}`);
     var langCode = getLanguageCode(input);
     console.log(this);
     this.setState({
-      translateToLang: langCode
+      translateToLang: langCode,
+      translateOldPhrase: '',
+      translateNewPhrase: ''
     });
+
+    var that = this
+    this.setState({
+      snackBarAdd: !this.state.snackBarAdd,
+      FBMessage: input ? 'Now translating to: '+ input : "no message!"
+    });
+
+    setTimeout(function() {
+      that.setState({
+        FBMessage: undefined
+      })
+    }, 4000);
   }
 
   // added handler for Google Translate
   clickTranslate(input) {
-    // this.setState({
-    //   isLoading: true,
-    // });
-    // setTimeout(() => {
-    //   this.setState({
-    //     isLoading: false,
-    //   });
-    // }, 1500);
-
-    // temportary testing with hardcoded data
-    // add search/speech functionality
 
     this.setState({
       translateView: true,
       mapView: false
     });
 
-    // var phrase = 'I am tired';
     var phrase = input;
-
     var fromLang = this.state.translateFromLang;
     var toLang = this.state.translateToLang;
 
@@ -230,7 +303,7 @@ class App extends React.Component {
       translateOldPhrase: phrase,
     })
 
-    console.log('Translate search using test input: ', phrase);
+    console.log('Translate search using input: ', phrase);
 
     axios.get(`/translate?from=${fromLang}&to=${toLang}&query=${phrase}`)
     .then((response) => {
@@ -305,10 +378,15 @@ class App extends React.Component {
       mainView: true,
       favView: false,
     });
+    // add state changes
+    this.setState({
+      translateView: true,
+    });
   }
 
   // handler for menu click/speech control on Help section
   clickHelp() {
+    whichUser(this.state.userNameFB);
     this.setState({
       helpToggle: !this.state.helpToggle,
     });
@@ -412,7 +490,7 @@ class App extends React.Component {
       var t = this.state.translateToLang
       var fromThing = getLanguage(f);
       var toThing = getLanguage(t);
-      
+
       condRender = (
         <div>
           <TranslateView
@@ -441,10 +519,14 @@ class App extends React.Component {
 
     return (
       <MuiThemeProvider>
-        <div>
+        <div id="YapPlus">
           <AppBar
             title="Yap+"
-            style={{ backgroundColor: '#FFA726' }}
+            style={{
+              backgroundColor: '#FFA726',
+              fontFamily: `"Verlag A", "Verlag B"`,
+              fontWeight: '700',
+              fontStyle: 'normal' }}
             onLeftIconButtonTouchTap={this.menuOpen}
           />
           <SearchBar
