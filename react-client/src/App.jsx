@@ -153,7 +153,6 @@ class App extends React.Component {
       });
     }, 2000);
 
-
     setTimeout(function() {
       this.setState({
         FBMessage: undefined
@@ -222,27 +221,47 @@ class App extends React.Component {
   }
 
   clickTravel(input) {
-    console.log(`You are now traveling to ${input}!`);
-    // hagerstown, md: 39.6418° N, 77.7200° W
     console.log(`The current lat/lng: ${this.state.lat}/${this.state.lng}`);
+    console.log(`You are now traveling to ${input}!`);
+    // hagerstown, md: 39.679136, -77.708215
 
-    var that = this
+    // var that = this
     this.setState({
       snackBarAdd: !this.state.snackBarAdd,
       FBMessage: input ? 'Now taking you to: '+ input : "no message!"
     });
 
-    setTimeout(function() {
-      that.setState({
+    setTimeout( () => {
+      this.setState({
         FBMessage: undefined
       })
     }, 4000);
-    // location
-    // use node geocoder here to grab lat/long
-    // this.setState({
-    //   lat: response.lat,
-    //   lng: response.long,
-    // }, () => axios.post('/location', response));
+
+    this.changeLocation(input);
+  }
+
+  // update lat/lng with new location
+  changeLocation(newLocation) {
+    console.log('OKAY WE TELEPORTIN NOW');
+    console.log('search: ', newLocation);
+
+    axios.post(`/changeLocation?destination=${newLocation}`)
+    .then((response) => {
+      // console.log(response.data[0]);
+      let latitude = response.data[0].latitude;
+      let longitude = response.data[0].longitude;
+
+      var updateLoc = {
+        lat: latitude,
+        lng: longitude,
+      }
+
+      this.setState({
+        lat: latitude,
+        lng: longitude,
+      }, () => axios.post('/location', updateLoc));
+      console.log(`The updated lat/lng: ${this.state.lat}, ${this.state.lng}`);
+    });
   }
 
   updateTranslateTo(input) {
@@ -284,7 +303,7 @@ class App extends React.Component {
       translateOldPhrase: phrase,
     })
 
-    console.log('Translate search using test input: ', phrase);
+    console.log('Translate search using input: ', phrase);
 
     axios.get(`/translate?from=${fromLang}&to=${toLang}&query=${phrase}`)
     .then((response) => {
