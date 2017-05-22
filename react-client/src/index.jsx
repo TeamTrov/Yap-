@@ -13,6 +13,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       isLogin: false,
+      profileName: 'FB username'
     };
     this.checkLoginState = this.checkLoginState.bind(this);
     this.loginFB = this.loginFB.bind(this);
@@ -22,7 +23,7 @@ class Main extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = () => {
       FB.init({
-        appId: '1909507675963563', // trov fb api key here
+        appId: '1909507675963563', // trov fb api key
         // appId: '1305613922867281', //your fb api key here
         cookie: true,
         xfbml: true,
@@ -44,18 +45,28 @@ class Main extends React.Component {
     }(document, 'script', 'facebook-jssdk'));
   }
 
+  updateName(nameInfo) {
+    console.log('previous user:', this.state.profileName);
+    this.setState({
+      profileName: nameInfo
+    });
+    console.log('updated user:', this.state.profileName);
+  }
+
   testAPI() {
     console.log('Fetching info from Facebook API ');
     FB.api('/me', 'get', { fields: 'id,name,timezone' }, (response) => {
-      console.log(`Successful login for: ${response.name}`);
-      console.log('tzone: ', response.timezone);
-      console.log('token: ', window.localStorage.getItem('fb_access_token'))
+      var profileName = response.name;
+      console.log(`Successful login for: ${profileName}`);
+      // console.log('tzone: ', response.timezone);
+      // console.log('token: ', window.localStorage.getItem('fb_access_token'))
+      this.updateName(profileName);
     });
   }
 
   statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+    // console.log('statusChangeCallback');
+    // console.log(response);
     if (response.status === 'connected') {
       this.testAPI();
     } else if (response.status === 'not_authorized') {
@@ -67,8 +78,13 @@ class Main extends React.Component {
 
   checkLoginState() {
     FB.getLoginStatus((response) => {
+      this.testAPI();
       this.statusChangeCallback(response);
       if (response.status === 'connected') {
+        var name = response.name;
+        console.log(`Successful login for: ${name}`);
+        // this.updateName(name);
+
         this.setState({
           isLogin: true,
         });
@@ -82,11 +98,11 @@ class Main extends React.Component {
   loginFB() {
     FB.login((response) => {
       if (response.authResponse) {
-
-
         FB.api('/me', 'get', { fields: 'id,name,timezeone' }, (response) => {
-          console.log(`FB Login, username: ${response.name}.`);
-          console.log('loginFB response.timezone: ', response.timezone)
+          // var profileName = response.name;
+          // this.updateName(profileName);
+          // console.log(`Successful login for: ${name}`);
+          console.log('logging in.....');
           this.setState({
             isLogin: true,
           });
@@ -134,6 +150,7 @@ class Main extends React.Component {
               checkLoginState={this.checkLoginState}
               loginFB={this.loginFB}
               logoutFB={this.logoutFB}
+              userName={this.state.profileName}
             />
           )}
       </div>
