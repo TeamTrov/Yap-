@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines" : { "npm" : "^4.2.0" },
+  "engines": {
+    "npm": "^4.2.0"
+  },
   "scripts": {
     "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
@@ -31,21 +33,22 @@
     "babel-preset-react": "^6.23.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.0",
+    "file-loader": "^0.11.1",
     "google-map-react": "^0.24.0",
     "google-translate-api": "arthurlacoste/google-translate-api",
+    "image-webpack-loader": "^3.3.0",
     "jquery": "^3.1.1",
     "material-ui": "^0.18.0",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
+    "node-geocoder": "^3.16.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-tap-event-plugin": "^2.0.1",
     "request": "^2.81.0",
     "url": "^0.11.0",
-    "file-loader": "^0.11.1",
-    "image-webpack-loader": "^3.3.0",
     "webpack": "^2.2.1"
   }
 }
