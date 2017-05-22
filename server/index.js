@@ -8,6 +8,10 @@ const axios = require('axios');
 const morgan = require('morgan');
 const yelpToken = 'KMCOc9XRiT-z_lrN_Z-D2RzvIlmBMDm1QduGfk8h6ua9ny5SRai6OBNhSn06JqbEm987rlgMF4c7IeaWc5nz3jenmwB4b7kXYsB7RV02ubrKYK38qsQJITDVtnsbWXYx';
 
+// for geocoder
+const geocoder = require('../react-client/src/assets/geocoder.js')
+
+
 let location = {};
 const app = express();
 
@@ -55,10 +59,35 @@ app.post('/storage/remove', (req, res) => {
   });
 });
 
+// npm geocoder for searching for new coordinates
+app.post('/changeLocation', function (req, res) {
+
+  console.log(`\nSearched for: ${req.query.destination}`);
+  searchGeocoder(req.query.destination, res);
+});
+
+let searchGeocoder = (loc, res) => {
+  geocoder.geocode(loc, (res) => {
+    return res;
+  })
+  .then((data) => {
+    // console.log(`\nThere are ${data.length} matches`);
+    console.log('GEO DATA!!', data);
+    res.send(data);
+  })
+  .catch((err) => {
+    console.log('ಠ_ಠ');
+    console.log(err.message);
+  });
+}
+/////
+
 app.post('/location', (req, res) => {
+  console.log('REQ.BODY = ', req.body);
   location = req.body;
   res.end();
 });
+
 
 app.post('/storage', (req, res) => {
   const locale = req.body;
